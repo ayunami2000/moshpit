@@ -21,21 +21,23 @@ function init(url) {
         video.src = window.URL.createObjectURL(videoBlob);
     });
 }
-    var file=document.querySelector("input[type=file]");
-    file.onchange=function(e){
-        if(this.files.length==0)return;
-        var vid=this.files[0];
-        const reader=new FileReader();
-        reader.onload=function(e){
-            init(e.target.result);
-        };
-        reader.readAsDataURL(vid);
-    };
 </script>
 </head>
 <body>
 webm ONLY: <input type="file" accept="video/webm"/>
 <br/>
 <video id="video" autoplay>Nope</video>
+<script>
+var file=document.querySelector("input[type=file]");
+file.onchange=function(e){
+    if(this.files.length==0)return;
+    var vid=this.files[0];
+    const reader=new FileReader();
+    reader.onload=function(e){
+        init(e.target.result);
+    };
+    reader.readAsDataURL(vid);
+};
+</script>
 </body>
 </html>
