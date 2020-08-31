@@ -44,9 +44,10 @@ function mosh (data) {
     var pFramesKeys = Object.keys(pFrames);
     for(var rpf=0;rpf<p2b.length;rpf++){
         if(Math.floor(Math.random())<=0.1){
-            pFrames2Mosh[rpf]=Math.floor(Math.random()*pFrames[pFramesKeys[Math.floor(Math.random()*pFramesKeys.length)]]);
+            pFrames2Mosh[rpf]=p2b[Math.floor(Math.random()*p2b.length)];
         }
     }
+    console.log()
     var blocks2Mosh = {}; // maps target block idx to its new block data
     for (var pFrame in pFrames2Mosh) {
         var blockIdx2Mosh = p2b[pFrame];
