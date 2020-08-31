@@ -2,9 +2,9 @@
 <script src="./js/matroska.js"></script>
 <script src="./js/moshpit.js"></script>
 <script>
-function init () {
+function init(url) {
     var video = document.getElementById('video');
-    loadVideo('./data/bunny.webm', function (error, rawBuffer) {
+    loadVideo((url==null||url=="")?'./data/bunny.webm':url, function (error, rawBuffer) {
         if (error) {
             console.log(error);
             return;
@@ -18,8 +18,19 @@ function init () {
         video.src = window.URL.createObjectURL(videoBlob);
     });
 }
+    var file=document.querySelector("input[type=file]");
+    file.onchange=function(e){
+        if(this.files.length==0)return;
+        var vid=this.files[0];
+        const reader=new FileReader();
+        reader.onload=function(e){
+            init(e.target.result);
+        };
+        reader.readAsDataURL(vid);
+    };
 </script>
-<body onload="init()">
+<body>
+webm ONLY: <input type="file" accept="video/webm"/>
 <video id="video" autoplay>Nope</video>
 </body>
 </html>
