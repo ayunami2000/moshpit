@@ -25,6 +25,7 @@ function mosh (data) {
             return true;
         }
     });
+    /*
     var pFrames2Mosh = { // map pframe idx to target moshblock
         403: 330, // a beautiful home
         539: 360, // a beautiful home 2
@@ -38,6 +39,14 @@ function mosh (data) {
         625: 0, // the horror
         671: 0, // the end
     };
+    */
+    var pFrames2Mosh = {};
+    var pFramesKeys = Object.keys(pFrames);
+    for(var rpf=0;rpf<p2b.length;rpf++){
+        if(Math.floor(Math.random())<=0.1){
+            pFrames2Mosh[p2b[rpf]]=Math.floor(Math.random()*pFrames[pFramesKeys[Math.floor(Math.random()*pFramesKeys.length)]]);
+        }
+    }
     var blocks2Mosh = {}; // maps target block idx to its new block data
     for (var pFrame in pFrames2Mosh) {
         var blockIdx2Mosh = p2b[pFrame];
